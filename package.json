@@ -1,0 +1,9 @@
+{
+  "name": "ya-kub-strona",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Strona YA_KUB — statyczny front-end + funkcje serwerowe Netlify (YouTube, Kick).",
+  "engines": {
+    "node": ">=18"
+  }
+}

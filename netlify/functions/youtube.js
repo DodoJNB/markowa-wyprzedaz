@@ -1,4 +1,7 @@
-// Funkcja serwerowa Netlify: pobiera 3 najnowsze filmy z kanału YouTube.
+// Funkcja serwerowa Netlify: pobiera 3 najnowsze wrzutki z kanału YouTube —
+// zarówno zwykłe filmy, jak i Shorty (YouTube trzyma je w tej samej
+// playliście "uploads" kanału, więc pokazujemy je wszystkie razem, od
+// najnowszej).
 //
 // KONFIGURACJA (Netlify → Site settings → Environment variables):
 //   YOUTUBE_API_KEY     — klucz do YouTube Data API v3 (Google Cloud Console)
@@ -41,7 +44,7 @@ exports.handler = async function () {
 
     const uploadsPlaylistId = channelData.items[0].contentDetails.relatedPlaylists.uploads;
 
-    // 2) pobierz 3 najnowsze filmy z playlisty uploadów
+    // 2) pobierz 3 najnowsze wrzutki z playlisty uploadów (filmy + Shorty)
     const playlistUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=3&playlistId=${uploadsPlaylistId}&key=${API_KEY}`;
     const playlistRes = await fetch(playlistUrl);
     const playlistData = await playlistRes.json();
